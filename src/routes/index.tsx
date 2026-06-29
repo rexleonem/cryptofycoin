@@ -61,43 +61,6 @@ function Index() {
 }
 
 
-function Logo() {
-  return (
-    <div className="flex items-center gap-2.5">
-      <div className="relative h-9 w-9 rounded-full bg-[var(--gradient-gold)] grid place-items-center shadow-glow">
-        <span className="font-display text-base font-bold text-primary-foreground">M</span>
-      </div>
-      <span className="font-display text-lg font-semibold tracking-tight">
-        Cryptofy<span className="text-gradient-gold"> Coin</span>
-      </span>
-    </div>
-  );
-}
-
-function Nav() {
-  const links = [
-    { href: "#ecosystem", label: "Ecosystem" },
-    { href: "#blockchain", label: "Blockchain" },
-    { href: "#tokenomics", label: "Tokenomics" },
-    { href: "#audit", label: "Audit" },
-    { href: "#partners", label: "Partners" },
-  ];
-  return (
-    <header className="sticky top-0 z-50 backdrop-blur-xl bg-background/70 border-b border-border">
-      <div className="mx-auto max-w-7xl px-6 h-16 flex items-center justify-between">
-        <Logo />
-        <nav className="hidden md:flex items-center gap-8 text-sm text-muted-foreground">
-          {links.map((l) => (
-            <a key={l.href} href={l.href} className="hover:text-foreground transition-colors">{l.label}</a>
-          ))}
-        </nav>
-        <a href="#buy" className="inline-flex items-center gap-1.5 rounded-full bg-[var(--gradient-gold)] px-4 py-2 text-sm font-semibold text-primary-foreground hover:opacity-90 transition shadow-glow">
-          Buy $CFYC <ArrowRight className="w-4 h-4" />
-        </a>
-      </div>
-    </header>
-  );
-}
 
 function Hero() {
   return (
