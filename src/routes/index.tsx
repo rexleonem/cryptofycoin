@@ -1,5 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowRight, ShieldCheck, Zap, Globe2, Coins, Lock, TrendingUp, Wallet, BookOpen, PlayCircle, CheckCircle2, ChevronRight } from "lucide-react";
+import { SiteNav, SiteFooter } from "@/components/SiteNav";
+
 
 import coinAsset from "@/assets/cf/coin.png.asset.json";
 import cfydAsset from "@/assets/cf/cfyd.jpg.asset.json";
