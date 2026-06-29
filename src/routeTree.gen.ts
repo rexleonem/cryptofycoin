@@ -9,8 +9,26 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as MetaverseRouteImport } from './routes/metaverse'
+import { Route as CurrencyRouteImport } from './routes/currency'
+import { Route as BenefitRouteImport } from './routes/benefit'
 import { Route as IndexRouteImport } from './routes/index'
 
+const MetaverseRoute = MetaverseRouteImport.update({
+  id: '/metaverse',
+  path: '/metaverse',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CurrencyRoute = CurrencyRouteImport.update({
+  id: '/currency',
+  path: '/currency',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BenefitRoute = BenefitRouteImport.update({
+  id: '/benefit',
+  path: '/benefit',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +37,61 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/benefit': typeof BenefitRoute
+  '/currency': typeof CurrencyRoute
+  '/metaverse': typeof MetaverseRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/benefit': typeof BenefitRoute
+  '/currency': typeof CurrencyRoute
+  '/metaverse': typeof MetaverseRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/benefit': typeof BenefitRoute
+  '/currency': typeof CurrencyRoute
+  '/metaverse': typeof MetaverseRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/benefit' | '/currency' | '/metaverse'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/benefit' | '/currency' | '/metaverse'
+  id: '__root__' | '/' | '/benefit' | '/currency' | '/metaverse'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BenefitRoute: typeof BenefitRoute
+  CurrencyRoute: typeof CurrencyRoute
+  MetaverseRoute: typeof MetaverseRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/metaverse': {
+      id: '/metaverse'
+      path: '/metaverse'
+      fullPath: '/metaverse'
+      preLoaderRoute: typeof MetaverseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/currency': {
+      id: '/currency'
+      path: '/currency'
+      fullPath: '/currency'
+      preLoaderRoute: typeof CurrencyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/benefit': {
+      id: '/benefit'
+      path: '/benefit'
+      fullPath: '/benefit'
+      preLoaderRoute: typeof BenefitRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,6 +104,9 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BenefitRoute: BenefitRoute,
+  CurrencyRoute: CurrencyRoute,
+  MetaverseRoute: MetaverseRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
