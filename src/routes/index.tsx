@@ -43,7 +43,7 @@ const partners = [
 function Index() {
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
-      <Nav />
+      <SiteNav />
       <Hero />
       <Stats />
       <InvestSection />
@@ -55,10 +55,11 @@ function Index() {
       <AuditSection />
       <Partners />
       <CTA />
-      <Footer />
+      <SiteFooter />
     </div>
   );
 }
+
 
 function Logo() {
   return (
