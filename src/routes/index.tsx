@@ -478,18 +478,3 @@ function CTA() {
   );
 }
 
-function Footer() {
-  return (
-    <footer className="border-t border-border">
-      <div className="mx-auto max-w-7xl px-6 py-12 flex flex-col md:flex-row gap-6 items-center justify-between">
-        <Logo />
-        <p className="text-xs text-muted-foreground">© {new Date().getFullYear()} Cryptofy Coin. All rights reserved.</p>
-        <div className="flex gap-6 text-xs text-muted-foreground">
-          <a href="#" className="hover:text-foreground">Whitepaper</a>
-          <a href="#" className="hover:text-foreground">Privacy</a>
-          <a href="https://t.me/cfyfollowbot" className="hover:text-foreground">Telegram</a>
-        </div>
-      </div>
-    </footer>
-  );
-}
