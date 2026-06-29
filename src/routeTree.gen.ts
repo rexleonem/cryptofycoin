@@ -9,9 +9,15 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as MetaverseRouteImport } from './routes/metaverse'
 import { Route as CurrencyRouteImport } from './routes/currency'
 import { Route as IndexRouteImport } from './routes/index'
 
+const MetaverseRoute = MetaverseRouteImport.update({
+  id: '/metaverse',
+  path: '/metaverse',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CurrencyRoute = CurrencyRouteImport.update({
   id: '/currency',
   path: '/currency',
@@ -26,31 +32,42 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/currency': typeof CurrencyRoute
+  '/metaverse': typeof MetaverseRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/currency': typeof CurrencyRoute
+  '/metaverse': typeof MetaverseRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/currency': typeof CurrencyRoute
+  '/metaverse': typeof MetaverseRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/currency'
+  fullPaths: '/' | '/currency' | '/metaverse'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/currency'
-  id: '__root__' | '/' | '/currency'
+  to: '/' | '/currency' | '/metaverse'
+  id: '__root__' | '/' | '/currency' | '/metaverse'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CurrencyRoute: typeof CurrencyRoute
+  MetaverseRoute: typeof MetaverseRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/metaverse': {
+      id: '/metaverse'
+      path: '/metaverse'
+      fullPath: '/metaverse'
+      preLoaderRoute: typeof MetaverseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/currency': {
       id: '/currency'
       path: '/currency'
@@ -71,6 +88,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CurrencyRoute: CurrencyRoute,
+  MetaverseRoute: MetaverseRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
