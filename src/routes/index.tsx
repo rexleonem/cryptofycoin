@@ -3,18 +3,18 @@ import { ArrowRight, ShieldCheck, Zap, Globe2, Coins, Lock, TrendingUp, Wallet, 
 import { SiteNav, SiteFooter } from "@/components/SiteNav";
 
 
-import coinAsset from "@/assets/cf/coin.png.asset.json";
-import cfydAsset from "@/assets/cf/cfyd.jpg.asset.json";
-import blockchainAsset from "@/assets/cf/blockchain.jpg.asset.json";
-import tokenAsset from "@/assets/cf/token.jpg.asset.json";
-import botAsset from "@/assets/cf/bot.jpg.asset.json";
-import smartcAsset from "@/assets/cf/smartc.jpg.asset.json";
-import coinstoreAsset from "@/assets/cf/coinstore.jpg.asset.json";
-import p2bAsset from "@/assets/cf/p2b.jpg.asset.json";
-import bitmartAsset from "@/assets/cf/bitmart.jpg.asset.json";
-import mexcAsset from "@/assets/cf/mexc.jpg.asset.json";
-import bscAsset from "@/assets/cf/bsc.jpg.asset.json";
-import dxsaleAsset from "@/assets/cf/dxsale.jpg.asset.json";
+const coinAsset = { url: "/image/coin.png" };
+const cfydAsset = { url: "/image/cfyd.jpg" };
+const blockchainAsset = { url: "/image/blockchain.jpg" };
+const tokenAsset = { url: "/image/token.jpg" };
+const botAsset = { url: "/image/bot.jpg" };
+const smartcAsset = { url: "/image/smartc.jpg" };
+const coinstoreAsset = { url: "/image/coinstore.jpg" };
+const p2bAsset = { url: "/image/p2b.jpg" };
+const bitmartAsset = { url: "/image/bitmart.jpg" };
+const mexcAsset = { url: "/image/mexc.jpg" };
+const bscAsset = { url: "/image/bsc.jpg" };
+const dxsaleAsset = { url: "/image/dxsale.jpg" };
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -300,7 +300,7 @@ function GlobalCoin() {
       <div className="relative overflow-hidden rounded-3xl border border-border bg-card p-10 md:p-16 shadow-card">
         <div className="absolute -top-32 -right-32 h-80 w-80 rounded-full bg-primary/20 blur-3xl" />
         <div className="absolute -bottom-32 -left-32 h-80 w-80 rounded-full bg-accent/20 blur-3xl" />
-        <div className="relative grid lg:grid-cols-[1.3fr_1fr] gap-10 items-center">
+        <div className="relative grid lg:grid-cols-2 gap-10 items-center">
           <div>
             <SectionHeader
               eyebrow="$CFYC is a global coin"
@@ -310,13 +310,17 @@ function GlobalCoin() {
             <a href="https://youtu.be/G9KbrbrtMyc" target="_blank" rel="noopener" className="mt-6 inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-5 py-3 text-sm font-semibold hover:bg-secondary transition">
               <PlayCircle className="w-4 h-4 text-primary" /> Watch on YouTube
             </a>
+            
+            <div className="mt-8 grid grid-cols-2 gap-4">
+              {["Real utility", "Audited", "Fast TPS", "Global reach"].map((t) => (
+                <div key={t} className="rounded-2xl border border-border bg-background/40 p-4 text-sm font-semibold flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />{t}
+                </div>
+              ))}
+            </div>
           </div>
-          <div className="grid grid-cols-2 gap-4">
-            {["Real utility", "Audited", "Fast TPS", "Global reach"].map((t) => (
-              <div key={t} className="rounded-2xl border border-border bg-background/40 p-5 text-sm font-semibold flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-primary" />{t}
-              </div>
-            ))}
+          <div className="relative">
+             <img src="/image/youtube.jpg" alt="Cryptofy Coin Global" className="rounded-3xl border border-border shadow-card w-full object-cover" />
           </div>
         </div>
       </div>
@@ -378,15 +382,18 @@ function AuditSection() {
         <img src={smartcAsset.url} alt="Smart contract audit" className="relative rounded-3xl border border-border w-full object-cover shadow-card" />
       </div>
 
-      <div className="lg:col-span-2 mt-8 rounded-3xl border border-border bg-card p-10 flex flex-col md:flex-row items-center justify-between gap-6">
-        <div className="flex items-center gap-4">
-          <div className="grid h-12 w-12 place-items-center rounded-xl bg-accent/15 text-accent"><Wallet className="w-5 h-5" /></div>
+      <div className="lg:col-span-2 mt-8 rounded-3xl border border-border bg-card overflow-hidden grid md:grid-cols-2 items-center">
+        <div className="p-10 md:p-16 flex flex-col items-start gap-5">
+          <div className="grid h-14 w-14 place-items-center rounded-2xl bg-accent/15 text-accent"><Wallet className="w-6 h-6" /></div>
           <div>
-            <h3 className="font-display text-xl font-semibold">Cryptofy Wallet</h3>
-            <p className="text-sm text-muted-foreground">A unified wallet for the entire Cryptofy ecosystem.</p>
+            <h3 className="font-display text-3xl font-semibold">Cryptofy Wallet</h3>
+            <p className="mt-3 text-muted-foreground leading-relaxed">A unified, secure wallet designed to handle the entire Cryptofy ecosystem. Connect to dApps, hold $CFYC, and bridge assets seamlessly.</p>
           </div>
+          <span className="mt-2 rounded-full bg-accent/15 text-accent px-4 py-2 text-xs font-semibold uppercase tracking-widest">Coming Soon</span>
         </div>
-        <span className="rounded-full bg-accent/15 text-accent px-4 py-2 text-xs font-semibold uppercase tracking-widest">Coming Soon</span>
+        <div className="relative h-full min-h-[300px] w-full flex items-center justify-center p-8 bg-gradient-to-br from-primary/5 to-accent/5">
+          <img src="/image/design.png" alt="Cryptofy Wallet Design" className="relative rounded-2xl shadow-2xl border border-border w-full max-w-sm rotate-2 hover:rotate-0 transition duration-500" />
+        </div>
       </div>
     </section>
   );

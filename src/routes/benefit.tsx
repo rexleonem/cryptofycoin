@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SiteNav, SiteFooter } from "@/components/SiteNav";
 import { PageHero, PageCTA } from "./currency";
 import { TrendingUp, Lock, Coins, LineChart } from "lucide-react";
-import tokenAsset from "@/assets/cf/token.jpg.asset.json";
+const tokenAsset = { url: "/image/token.jpg" };
 
 export const Route = createFileRoute("/benefit")({
   head: () => ({
