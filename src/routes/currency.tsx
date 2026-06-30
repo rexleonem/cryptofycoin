@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteNav, SiteFooter } from "@/components/SiteNav";
 import { Coins, ShieldCheck, Zap, ArrowRight, CheckCircle2 } from "lucide-react";
-import cfydAsset from "@/assets/cf/cfyd.jpg.asset.json";
+const cfydAsset = { url: "/image/cfyd.jpg" };
 
 export const Route = createFileRoute("/currency")({
   head: () => ({

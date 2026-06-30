@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SiteNav, SiteFooter } from "@/components/SiteNav";
 import { PageHero, PageCTA } from "./currency";
 import { Globe2, Gamepad2, Boxes, Sparkles } from "lucide-react";
-import blockchainAsset from "@/assets/cf/blockchain.jpg.asset.json";
+const blockchainAsset = { url: "/image/blockchain.jpg" };
 
 export const Route = createFileRoute("/metaverse")({
   head: () => ({
