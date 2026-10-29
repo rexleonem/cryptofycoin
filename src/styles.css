@@ -1,3 +1,4 @@
+
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
@@ -63,7 +64,12 @@
 
 @layer base {
   * { border-color: var(--color-border); }
-  html { scroll-behavior: smooth; }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+  }
+
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
@@ -71,8 +77,15 @@
     font-feature-settings: "ss01", "cv11";
     -webkit-font-smoothing: antialiased;
   }
-  h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.02em; }
-  ::selection { background: oklch(0.82 0.16 85 / 0.35); }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+
+  ::selection {
+    background: oklch(0.82 0.16 85 / 0.35);
+  }
 }
 
 @utility text-gradient-gold {
@@ -96,16 +109,185 @@
   0%, 100% { transform: translateY(0) rotate(0deg); }
   50% { transform: translateY(-18px) rotate(3deg); }
 }
-@keyframes spin-slow { to { transform: rotate(360deg); } }
+
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+
 @keyframes pulse-glow {
   0%, 100% { opacity: 0.6; transform: scale(1); }
   50% { opacity: 1; transform: scale(1.05); }
 }
+
 @keyframes marquee {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
 }
+
 @utility animate-float { animation: float 6s ease-in-out infinite; }
 @utility animate-spin-slow { animation: spin-slow 30s linear infinite; }
 @utility animate-pulse-glow { animation: pulse-glow 4s ease-in-out infinite; }
 @utility animate-marquee { animation: marquee 30s linear infinite; }
+
+/* =========================================
+   GLOBAL ANIMATION SYSTEM
+   Reusable across all Cryptofy Coin pages
+   ========================================= */
+
+/* Page entrance */
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade and rise */
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 28px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* Gentle fade */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Gold shimmer */
+@keyframes gold-shimmer {
+  0% { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
+
+/* Soft floating glow */
+@keyframes glow-drift {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translate3d(-12px, 10px, 0) scale(1.08);
+    opacity: 0.6;
+  }
+}
+
+/* Reusable animation utilities */
+@utility animate-page-enter {
+  animation: page-enter 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@utility animate-reveal-up {
+  animation: reveal-up 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@utility animate-fade-in {
+  animation: fade-in 600ms ease-out both;
+}
+
+@utility animate-gold-shimmer {
+  background-size: 200% auto;
+  animation: gold-shimmer 4s linear infinite;
+}
+
+@utility animate-glow-drift {
+  animation: glow-drift 8s ease-in-out infinite;
+}
+
+/* Staggered entrance delays */
+@utility animation-delay-100 { animation-delay: 100ms; }
+@utility animation-delay-200 { animation-delay: 200ms; }
+@utility animation-delay-300 { animation-delay: 300ms; }
+@utility animation-delay-400 { animation-delay: 400ms; }
+@utility animation-delay-500 { animation-delay: 500ms; }
+@utility animation-delay-600 { animation-delay: 600ms; }
+
+/* Interactive cards */
+@layer components {
+  .animated-card {
+    transition:
+      transform 300ms cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 300ms ease,
+      background-color 300ms ease,
+      box-shadow 300ms ease;
+  }
+
+  .animated-card:hover {
+    transform: translateY(-4px);
+    border-color: color-mix(in oklch, var(--primary) 40%, transparent);
+    box-shadow: 0 18px 45px -28px var(--primary);
+  }
+
+  .animated-icon {
+    transition:
+      transform 300ms cubic-bezier(0.22, 1, 0.36, 1),
+      background-color 300ms ease,
+      color 300ms ease;
+  }
+
+  .animated-card:hover .animated-icon {
+    transform: scale(1.08);
+  }
+
+  .animated-link {
+    transition: color 200ms ease;
+  }
+
+  .animated-link:hover {
+    color: var(--primary);
+  }
+
+  .gold-glow-hover {
+    transition: box-shadow 300ms ease, transform 300ms ease;
+  }
+
+  .gold-glow-hover:hover {
+    box-shadow: 0 0 28px -12px var(--primary);
+    transform: translateY(-2px);
+  }
+}
+
+/* Native scroll reveal.
+   Add .scroll-reveal to an element and .is-visible when it enters view.
+   Use Framer Motion for the Privacy Policy page's existing reveals. */
+@media (prefers-reduced-motion: no-preference) {
+  .scroll-reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+      opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .scroll-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Accessibility: respect the user's motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .scroll-reveal {
+    opacity: 1;
+    transform: none;
+  }
+}

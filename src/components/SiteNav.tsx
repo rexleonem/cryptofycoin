@@ -106,6 +106,8 @@ export function SiteFooter() {
           <Link to="/currency" className="hover:text-foreground">Currency</Link>
           <Link to="/metaverse" className="hover:text-foreground">Metaverse</Link>
           <Link to="/benefit" className="hover:text-foreground">Benefits</Link>
+          <Link to="/privacy-policy" className="hover:text-foreground">Privacy Policy</Link>
+         <Link to="/terms" className="hover:text-foreground">Terms & Conditions</Link>
           <a href="https://t.me/cfyfollowbot" className="hover:text-foreground">Telegram</a>
         </div>
       </div>
